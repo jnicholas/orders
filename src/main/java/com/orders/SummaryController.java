@@ -4,19 +4,18 @@ import com.orders.dao.OrderDao;
 import com.orders.models.Order;
 import com.orders.models.OrderSummary;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RepositoryRestController
-@RequestMapping("/summary")
+@RestController
+@RequestMapping("/orders/{orderId}/summary")
 public class SummaryController {
 
     @Autowired
-    OrderDao orderDao;
+    private OrderDao orderDao;
 
-    @RequestMapping(path = "/{orderId}", method = RequestMethod.GET)
+    @RequestMapping(path = "", method = RequestMethod.GET)
     public ResponseEntity getOrderSummary(@PathVariable("orderId") Integer orderId) {
         Order order = orderDao.findOne(orderId);
         if (order != null) {

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name="orders") /* avoid ORDER sql keyword */
+@Table(name="orders")
 public class Order {
 
     @Id
