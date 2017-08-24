@@ -39,4 +39,24 @@ public class Item {
     public void setItemCost(Double itemCost) {
         this.itemCost = itemCost;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Item item = (Item) o;
+
+        if (!itemId.equals(item.itemId)) return false;
+        if (itemName != null ? !itemName.equals(item.itemName) : item.itemName != null) return false;
+        return itemCost != null ? itemCost.equals(item.itemCost) : item.itemCost == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = itemId.hashCode();
+        result = 31 * result + (itemName != null ? itemName.hashCode() : 0);
+        result = 31 * result + (itemCost != null ? itemCost.hashCode() : 0);
+        return result;
+    }
 }

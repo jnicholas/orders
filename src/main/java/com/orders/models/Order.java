@@ -12,7 +12,7 @@ public class Order {
     private Integer orderId;
     private String customerName;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
         name = "order_items",
         joinColumns = @JoinColumn(name = "orderId", referencedColumnName = "orderId"),
@@ -46,5 +46,25 @@ public class Order {
 
     public void setItems(Set<Item> items) {
         this.items = items;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        if (!orderId.equals(order.orderId)) return false;
+        if (customerName != null ? !customerName.equals(order.customerName) : order.customerName != null) return false;
+        return items != null ? items.equals(order.items) : order.items == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = orderId.hashCode();
+        result = 31 * result + (customerName != null ? customerName.hashCode() : 0);
+        result = 31 * result + (items != null ? items.hashCode() : 0);
+        return result;
     }
 }
