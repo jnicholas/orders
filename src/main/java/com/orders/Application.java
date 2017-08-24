@@ -16,6 +16,9 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+    /**
+     * Allows "summary" API endpoint to be discoverable from an Order's links resource.
+     */
     @Bean
     public ResourceProcessor<Resource<Order>> orderProcessor() {
 
